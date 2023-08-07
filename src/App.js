@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import ProductList from "./components/ProductList";
+import ProductDetails from "./components/ProductDetails";
+import ShoppingCart from "./components/ShoppingCart";
+import { getProducts } from "./data/api";
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { setItemId } from "./components/ProductItem";
 
 function App() {
+  const [products, setProducts] = useState(getProducts);
+  const [id, setId] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header></Header>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <div className="App">
+                <ProductList products={products}></ProductList>
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/details"
+          element={<ProductDetails item={products} id={id}></ProductDetails>}
+        ></Route>
+        <Route path="/cart" element={<ShoppingCart></ShoppingCart>}></Route>
+      </Routes>
+    </Router>
   );
 }
 
