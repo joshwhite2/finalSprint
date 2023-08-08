@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.productList {
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+  margin: 20px;
+  border: solid black 1px;
+  padding: 20px;
+}
+
+.btn1 {
+  height: 30px;
+  cursor: pointer;
+  margin: 8px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}

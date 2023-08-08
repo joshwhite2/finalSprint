@@ -5,6 +5,7 @@ import ProductDetails from "./components/ProductDetails";
 import ShoppingCart from "./components/ShoppingCart";
 import { getProducts } from "./data/api";
 import { useState } from "react";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { setItemId } from "./components/ProductItem";
 
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <Router>
+      <ShoppingCartProvider>
       <Header></Header>
       <Routes>
         <Route
@@ -32,6 +34,7 @@ function App() {
         ></Route>
         <Route path="/cart" element={<ShoppingCart></ShoppingCart>}></Route>
       </Routes>
+      </ShoppingCartProvider>
     </Router>
   );
 }
