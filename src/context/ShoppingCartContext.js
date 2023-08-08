@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
-  const [shoppingCart, setShoppingCart] = useState([]); // Use lowercase "shoppingCart"
+  const [shoppingCart, setShoppingCart] = useState([]); 
 
   useEffect(() => {
     const getShoppingCart = async () => {
