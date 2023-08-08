@@ -21,6 +21,12 @@ code {
   padding: 20px;
 }
 
+.productImage {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
 .btn1 {
   height: 30px;
   cursor: pointer;
