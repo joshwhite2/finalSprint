@@ -2,21 +2,22 @@ import { createContext, useEffect, useState } from "react";
 
 const ShoppingCartContext = createContext();
 
-const ShoppingCartProvider = ({ children }) => {
-  const [shoppingCart, setShoppingCart] = useState([]);
+export const ShoppingCartProvider = ({ children }) => {
+  const [shoppingCart, setShoppingCart] = useState([]); // Use lowercase "shoppingCart"
 
   useEffect(() => {
-    fetchShoppingCart();
+    const getShoppingCart = async () => {
+      const shoppingCartFromServer = await fetchShoppingCart();
+      setShoppingCart(shoppingCartFromServer);
+    };
+    getShoppingCart();
   }, []);
 
+  // FETCH SHOPPING CART FUNCTION
   const fetchShoppingCart = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/shoppingcart");
-      const data = await response.json();
-      setShoppingCart(data);
-    } catch (error) {
-      console.error("Error fetching shopping cart:", error);
-    }
+    const res = await fetch("http://localhost:5000/shoppingcart"); // Use correct API endpoint
+    const data = await res.json();
+    return data;
   };
 
   const addToCart = async (newItem) => {
@@ -40,29 +41,12 @@ const ShoppingCartProvider = ({ children }) => {
     }
   };
 
-  const removeFromCart = async (itemId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/shoppingcart/${itemId}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      // If the delete request was successful, update the shopping cart state
-      setShoppingCart((prevCart) => prevCart.filter(item => item.id !== itemId));
-    } catch (error) {
-      console.error("Error removing item from cart:", error);
-    }
-  };
 
   return (
     <ShoppingCartContext.Provider
       value={{
         shoppingCart,
         addToCart,
-        removeFromCart,
       }}
     >
       {children}
@@ -70,4 +54,4 @@ const ShoppingCartProvider = ({ children }) => {
   );
 };
 
-export { ShoppingCartProvider, ShoppingCartContext };
+export default ShoppingCartContext;

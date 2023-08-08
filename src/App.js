@@ -15,7 +15,7 @@ function App() {
 
   return (
     <Router>
-      <ShoppingCartProvider>
+     
       <Header></Header>
       <Routes>
         <Route
@@ -32,9 +32,9 @@ function App() {
           path="/details"
           element={<ProductDetails item={products} id={id}></ProductDetails>}
         ></Route>
-        <Route path="/cart" element={<ShoppingCart></ShoppingCart>}></Route>
+        <Route path="/cart" element={ <ShoppingCartProvider><ShoppingCart></ShoppingCart> </ShoppingCartProvider>}></Route>
       </Routes>
-      </ShoppingCartProvider>
+     
     </Router>
   );
 }
