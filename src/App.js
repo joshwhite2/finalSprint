@@ -1,17 +1,16 @@
 import "./App.css";
 import Header from "./components/Header";
+import Home from "./components/Home";
 import ProductList from "./components/ProductList";
 import ProductDetails from "./components/ProductDetails";
 import ShoppingCart from "./components/ShoppingCart";
 import { getProducts } from "./data/api";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { setItemId } from "./components/ProductItem";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 function App() {
-  const [products, setProducts] = useState(getProducts);
-  const [id, setId] = useState(0);
+  const [products] = useState(getProducts);
 
   return (
     <Router>
@@ -23,14 +22,18 @@ function App() {
             element={
               <>
                 <div className="App">
-                  <ProductList products={products}></ProductList>
+                  <Home></Home>
                 </div>
               </>
             }
           />
           <Route
-            path="/details"
-            element={<ProductDetails item={products} id={id}></ProductDetails>}
+            path="details/:id"
+            element={<ProductDetails item={products}></ProductDetails>}
+          ></Route>
+          <Route
+            path="products/"
+            element={<ProductList products={products}></ProductList>}
           ></Route>
           <Route path="/cart" element={<ShoppingCart></ShoppingCart>}></Route>
         </Routes>
