@@ -1,12 +1,10 @@
 import React from "react";
-
 import BackButton from "../shared/BackButton";
-
-import { useContext, useEffect, useState } from "react";
-
+import { useContext } from "react";
 import ShoppingCartContext from "../context/ShoppingCartContext";
+import FormattedPrice from "./FormattedPrice";
 
-const ShoppingCart = ({ item }) => {
+const ShoppingCart = () => {
   const { shoppingCart } = useContext(ShoppingCartContext);
 
   return (
@@ -16,8 +14,7 @@ const ShoppingCart = ({ item }) => {
 
         {shoppingCart.map((item) => (
           <div key={item.id}>
-            {item.name}
-            {item.price}
+            {item.name} - <FormattedPrice value={item.price} />
           </div>
         ))}
       </div>

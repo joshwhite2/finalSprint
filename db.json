@@ -13,6 +13,13 @@
       "description": "Montblanc made, over 800 diamonds and three variations involving emeralds, sapphires, and rubies along its body",
       "price": 730000.0,
       "icon": "images/pen2.jpg"
+    },
+    {
+      "id": 3,
+      "name": " Mystery Masterpiece",
+      "description": "Montblanc made, over 800 diamonds and three variations involving emeralds, sapphires, and rubies along its body",
+      "price": 730000.0,
+      "icon": "images/pen2.jpg"
     }
   ]
 }

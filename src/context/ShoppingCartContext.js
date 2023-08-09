@@ -5,6 +5,10 @@ const ShoppingCartContext = createContext();
 export const ShoppingCartProvider = ({ children }) => {
   const [shoppingCart, setShoppingCart] = useState([]);
 
+  useEffect(() => {
+    fetchShoppingCart(); // Fetch and populate the shopping cart initially
+  }, []);
+
   const fetchShoppingCartData = async () => {
     try {
       const res = await fetch("http://localhost:5000/shoppingcart");
@@ -24,10 +28,6 @@ export const ShoppingCartProvider = ({ children }) => {
 
     setShoppingCart(shoppingCartFromServer);
   };
-
-  useEffect(() => {
-    fetchShoppingCart(); // Fetch and populate the shopping cart initially
-  }, []);
 
   const addToCart = async (newItem) => {
     try {
