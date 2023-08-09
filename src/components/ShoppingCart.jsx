@@ -2,9 +2,10 @@ import React from "react";
 
 import BackButton from "../shared/BackButton";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 import ShoppingCartContext from "../context/ShoppingCartContext";
+import FormattedPrice from "./FormattedPrice";
 
 const ShoppingCart = ({ item }) => {
   const { shoppingCart } = useContext(ShoppingCartContext);
@@ -17,7 +18,10 @@ const ShoppingCart = ({ item }) => {
         {shoppingCart.map((item) => (
           <div key={item.id}>
             {item.name}
-            {item.price}
+            <FormattedPrice value={item.price} />
+
+
+            {item.quantity}
           </div>
         ))}
       </div>

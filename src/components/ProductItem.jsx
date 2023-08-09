@@ -16,7 +16,7 @@ const ProductItem = ({ item }) => {
         <FormattedPrice value={item.price} />
       </h3>
 
-      <CartButton></CartButton>
+      <CartButton item={item}></CartButton>
     </div>
   );
 };

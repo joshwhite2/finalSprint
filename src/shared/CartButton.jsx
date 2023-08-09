@@ -1,8 +1,16 @@
+import React, { useContext } from "react";
 import { BsCartPlusFill } from "react-icons/bs";
+import ShoppingCartContext from "../context/ShoppingCartContext";
 
-const CartButton = () => {
+const CartButton = ({ item }) => {
+  const { addToCart } = useContext(ShoppingCartContext);
+
+  const handleAddToCart = () => {
+    addToCart(item);
+  };
+
   return (
-    <button className="btn1">
+    <button className="btn1" onClick={handleAddToCart}>
       <BsCartPlusFill /> Add to Cart
     </button>
   );

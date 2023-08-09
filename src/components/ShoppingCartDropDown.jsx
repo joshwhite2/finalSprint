@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import FormattedPrice from "./FormattedPrice";
-import { getProducts } from "../data/api";
+import ShoppingCartContext from "../context/ShoppingCartContext";
 
 // making a drop down preview of what is already in cart
 const ShoppingCartDropDown = () => {
-  const cartItems = getProducts();
+  const { shoppingCart } = useContext(ShoppingCartContext);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const togglePreview = () => {
@@ -24,8 +24,8 @@ const ShoppingCartDropDown = () => {
         </Link>
         {isPreviewOpen && (
           <div className="cart-preview">
-            {cartItems.length > 0 ? (
-              cartItems.map((item) => (
+            {shoppingCart.length > 0 ? (
+              shoppingCart.map((item) => (
                 <div key={item.id}>
                   <p>
                     {item.name} - <FormattedPrice value={item.price} />
