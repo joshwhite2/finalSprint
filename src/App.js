@@ -7,6 +7,7 @@ import { getProducts } from "./data/api";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { setItemId } from "./components/ProductItem";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 function App() {
   const [products, setProducts] = useState(getProducts);
@@ -14,24 +15,26 @@ function App() {
 
   return (
     <Router>
-      <Header></Header>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <div className="App">
-                <ProductList products={products}></ProductList>
-              </div>
-            </>
-          }
-        />
-        <Route
-          path="/details"
-          element={<ProductDetails item={products} id={id}></ProductDetails>}
-        ></Route>
-        <Route path="/cart" element={<ShoppingCart></ShoppingCart>}></Route>
-      </Routes>
+      <ShoppingCartProvider>
+        <Header></Header>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="App">
+                  <ProductList products={products}></ProductList>
+                </div>
+              </>
+            }
+          />
+          <Route
+            path="/details"
+            element={<ProductDetails item={products} id={id}></ProductDetails>}
+          ></Route>
+          <Route path="/cart" element={<ShoppingCart></ShoppingCart>}></Route>
+        </Routes>
+      </ShoppingCartProvider>
     </Router>
   );
 }
