@@ -1,4 +1,3 @@
-import CartButton from "../shared/CartButton";
 import ProductItem from "./ProductItem";
 
 const ProductList = ({ products }) => {

@@ -51,12 +51,16 @@ export const ShoppingCartProvider = ({ children }) => {
     }
   };
 
+  const selectItem = (item) => {
+    return item;
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
         shoppingCart,
-
         addToCart,
+        selectItem,
       }}
     >
       {children}
